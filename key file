@@ -1,0 +1,14 @@
+from flask import Flask, request, jsonify
+   import tensorflow as tf
+
+   app = Flask(__name__)
+   model = tf.keras.models.load_model('plant_model.h5')
+
+   @app.route('/predict', methods=['POST'])
+   def predict():
+       img = request.files['image'].read()
+       # Add AI prediction logic here
+       return jsonify({"plant": "tomato", "disease": "none"})
+
+   if __name__ == '__main__':
+       app.run()
